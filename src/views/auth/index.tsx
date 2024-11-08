@@ -33,19 +33,19 @@ const Auth = ({ setup }: { setup: boolean }) => {
 			<div className="w-screen h-screen overflow-hidden flex justify-center items-center">
 				<div className="mx-auto flex w-full flex-col justify-center space-y-6 sm:w-[350px]">
 					<div className="flex flex-col space-y-2 text-center">
-						<h1 className="text-2xl font-semibold tracking-tight">TzuOS</h1>
-						<p className="text-sm text-muted-foreground">{setup ? 'Setup a TzuOS account.' : 'Connect to your TzuOS account.'}</p>
+						<h1 className="text-2xl font-semibold tracking-tight">Welcome to TzuOS</h1>
+						<p className="text-sm text-muted-foreground">{setup ? 'Create your TzuOS account to get started.' : 'Log in to your TzuOS account.'}</p>
 					</div>
 
 					<div className="grid gap-6">
-						<div className="grid gap-2">
+						<div className="grid gap-2.5">
 							{/* Input fields for username and password */}
-							<Input type="text" onChange={(e) => updateField('username', e.target.value)} value={fields.username} placeholder="Enter your username" />
-							<Input type="password" onChange={(e) => updateField('password', e.target.value)} value={fields.password} placeholder="Enter your password" />
+							<Input type="text" onChange={(e) => updateField('username', e.target.value)} value={fields.username} placeholder="Username" />
+							<Input type="password" onChange={(e) => updateField('password', e.target.value)} value={fields.password} placeholder="Password" />
 						</div>
 
 						{/* Submit Button with different labels based on setup or authentication */}
-						<Button onClick={onSubmit}>{setup ? 'Complete Setup!' : 'Connect'}</Button>
+						<Button onClick={onSubmit}>{setup ? 'Finish Setup' : 'Log In'}</Button>
 					</div>
 				</div>
 			</div>
