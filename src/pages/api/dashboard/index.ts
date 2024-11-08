@@ -80,7 +80,7 @@ const handler = async (req: NextApiRequest, res: NextApiResponse) => {
 
 		// Return the formatted dataset as the response with a 200 OK status
 		return res.status(200).json(dataset);
-	} catch (error) {
+	} catch {
 		// Handle any errors that occur during data fetching
 		return res.status(500).json({ message: 'Internal Server Error' });
 	}
