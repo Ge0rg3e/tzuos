@@ -1,0 +1,68 @@
+{
+	"name": "tzuos",
+	"description": "TzuOS is an open-source home server manager with a simple dashboard and interactive desktop mode.",
+	"version": "0.5.0",
+	"author": "Ge0rg3e",
+	"license": "MIT",
+	"scripts": {
+		"dev": "next dev --port 61041 --turbopack",
+		"start": "next start --port 61041",
+		"build": "next build",
+		"lint": "next lint"
+	},
+	"dependencies": {
+		"@prisma/client": "^5.22.0",
+		"@radix-ui/react-select": "^2.1.2",
+		"@radix-ui/react-slot": "^1.1.0",
+		"@reduxjs/toolkit": "^2.3.0",
+		"axios": "^1.7.7",
+		"bcrypt": "^5.1.1",
+		"class-variance-authority": "^0.7.0",
+		"clsx": "^2.1.1",
+		"framer-motion": "^11.11.11",
+		"jsonwebtoken": "^9.0.2",
+		"lucide-react": "^0.454.0",
+		"next": "15.0.2",
+		"react": "19.0.0-rc-02c0e824-20241028",
+		"react-dom": "19.0.0-rc-02c0e824-20241028",
+		"react-icons": "^5.3.0",
+		"react-redux": "^9.1.2",
+		"swr": "^2.2.5",
+		"systeminformation": "^5.23.5",
+		"tailwind-merge": "^2.5.4",
+		"tailwindcss-animate": "^1.0.7"
+	},
+	"devDependencies": {
+		"@types/bcrypt": "^5.0.2",
+		"@types/dockerode": "^3.3.31",
+		"@types/jsonwebtoken": "^9.0.7",
+		"@types/node": "^20",
+		"@types/react": "^18",
+		"@types/react-dom": "^18",
+		"eslint": "^8",
+		"eslint-config-next": "15.0.2",
+		"postcss": "^8",
+		"tailwindcss": "^3.4.1",
+		"typescript": "^5"
+	},
+	"prettier": {
+		"$schema": "http://json.schemastore.org/prettierrc",
+		"endOfLine": "lf",
+		"printWidth": 200,
+		"quoteProps": "as-needed",
+		"semi": true,
+		"singleQuote": true,
+		"tabWidth": 4,
+		"trailingComma": "none",
+		"useTabs": true,
+		"overrides": [
+			{
+				"files": "*.yml",
+				"options": {
+					"tabWidth": 2,
+					"useTabs": false
+				}
+			}
+		]
+	}
+}

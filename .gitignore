@@ -1,0 +1,7 @@
+prisma/migrations
+package-lock.json
+data.db-journal
+node_modules
+data.db
+.next
+.env
