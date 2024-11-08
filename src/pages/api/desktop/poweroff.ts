@@ -24,7 +24,7 @@ const handler = async (req: NextApiRequest, res: NextApiResponse) => {
 			// Send a response confirming the shutdown command was initiated
 			return res.status(200).json({ message: 'System shutdown initiated.' });
 		});
-	} catch (err) {
+	} catch {
 		// Return a 500 Internal Server Error response if there's an unexpected issue
 		return res.status(500).json({ message: 'Internal Server Error' });
 	}

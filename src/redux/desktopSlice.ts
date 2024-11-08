@@ -1,6 +1,5 @@
 import { registredApplications } from '~/views/desktop/applications';
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
-import React, { ReactNode } from 'react';
 
 // Define the shape of an application object
 export interface Application {
