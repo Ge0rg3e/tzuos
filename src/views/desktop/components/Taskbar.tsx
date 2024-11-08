@@ -22,7 +22,7 @@ const Taskbar = () => {
 	};
 
 	const onReboot = async () => {
-		const { status } = await makeEndpointRequest('/api/desktop/poweroff', 'POST', {});
+		const { status } = await makeEndpointRequest('/api/desktop/reboot', 'POST', {});
 
 		if (status === 200) {
 			return alert('System reboot initiated successfully.');

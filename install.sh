@@ -135,7 +135,9 @@ EOF
 # Function to run the TzuOS application
 run_tzuos() {
   log_message "TzuOS is now running..." "34"
-  echo -e "\033[32mTzuOS -> 6/6 Run the TzuOS - Access at http://192.168.0.106:61041\033[0m"
+  # Retrieve the first non-loopback IP address of the machine
+  IP_ADDRESS=$(hostname -I | awk '{print $1}')
+  echo -e "\033[32mTzuOS -> 6/6 Run the TzuOS - Access at http://$IP_ADDRESS:61041\033[0m"
 }
 
 # Main script
