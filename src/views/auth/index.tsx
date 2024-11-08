@@ -19,13 +19,13 @@ const Auth = ({ setup }: { setup: boolean }) => {
 		// Make API request to the appropriate endpoint (either /api/setup or /api/auth)
 		const { status, data } = await makeEndpointRequest(setup ? '/api/setup' : '/api/auth', 'POST', fields);
 
-		// If the request is successful (status 200), reload the page
+		// If the request is successful (status 200), reload the page and show success alert
 		if (status === 200) {
 			return location.reload();
 		}
 
-		// If the request fails, log the status and error data
-		return console.error(status, ' - ', data);
+		// If the request fails, show an alert with the error message
+		alert(`Failed to complete the operation. Status: ${status}. Error: ${data?.message || 'Unexpected error occurred'}`);
 	};
 
 	return (

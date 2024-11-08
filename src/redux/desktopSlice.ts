@@ -1,10 +1,14 @@
 import { registredApplications } from '~/views/desktop/applications';
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
+import React, { ReactNode } from 'react';
 
 // Define the shape of an application object
 export interface Application {
 	id: string;
-	icon: string;
+	icon: {
+		color: string;
+		content: ExpectedAny;
+	};
 	name: string;
 	opened: boolean;
 	tempData: {

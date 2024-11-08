@@ -1,8 +1,9 @@
 import { openApp, closeApp } from '~/redux/desktopSlice';
 import { useSelector, useDispatch } from 'react-redux';
+import { LuPower, LuRotateCcw } from 'react-icons/lu';
+import { makeEndpointRequest } from '~/utils/api';
 import { useState, useEffect } from 'react';
 import { RootState } from '~/redux/store';
-import { useRouter } from 'next/router';
 
 const Taskbar = () => {
 	const applications = useSelector((state: RootState) => state.desktop.applications);
@@ -10,21 +11,34 @@ const Taskbar = () => {
 	const [currentTime, setCurrentTime] = useState(new Date());
 	const [isHovered, setIsHovered] = useState(false);
 	const dispatch = useDispatch();
-	const router = useRouter();
 
 	useEffect(() => {
 		const timer = setInterval(() => setCurrentTime(new Date()), 1000);
 		return () => clearInterval(timer);
 	}, []);
 
-	const onLogOut = () => {
-		const { query } = router;
-		delete query.desktop;
-		router.replace({ pathname: router.pathname, query }, undefined, { shallow: true });
-	};
-
 	const handleAppClick = (appId: string, isOpened: boolean) => {
 		dispatch(isOpened ? closeApp(appId) : openApp(appId));
+	};
+
+	const onReboot = async () => {
+		const { status } = await makeEndpointRequest('/api/desktop/poweroff', 'POST', {});
+
+		if (status === 200) {
+			return alert('System reboot initiated successfully.');
+		}
+
+		return alert('Failed to initiate system reboot.');
+	};
+
+	const onPowerOff = async () => {
+		const { status } = await makeEndpointRequest('/api/desktop/poweroff', 'POST', {});
+
+		if (status === 200) {
+			return alert('System shutdown initiated successfully.');
+		}
+
+		return alert('Failed to initiate system shutdown.');
 	};
 
 	const formattedTime = currentTime.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
@@ -41,20 +55,30 @@ const Taskbar = () => {
 			)}
 			<nav
 				className={`fixed left-0 w-full flex justify-center items-center gap-x-3 z-20 smooth ${isAnAppFullScreen ? (isHovered ? 'bottom-3' : '-bottom-14') : 'bottom-3'}`}
-				onMouseEnter={() => setIsHovered(true)}
 				onMouseLeave={() => setIsHovered(false)}
+				onMouseEnter={() => setIsHovered(true)}
 			>
 				<div className="bg-black/[0.50] flex items-center px-5 gap-x-5 backdrop-blur-[26px] h-[50px] [box-shadow:0px_4px_51px_rgba(0,_0,_0,_0.25)] rounded-[10px]">
 					{applications.map((app) => (
 						<button
-							className={`size-[26px] bg-contain bg-center bg-no-repeat smooth ${app.opened ? '-mt-2' : 'hover:-mt-2'}`}
+							className={`size-[35px] flex justify-center items-center rounded-lg smooth ${app.opened ? '-mt-2' : 'hover:-mt-2'}`}
 							onClick={() => handleAppClick(app.id, app.opened)}
-							style={{ backgroundImage: `url(${app.icon})` }}
+							style={{ backgroundColor: app.icon.color }}
 							title={app.name}
 							key={app.id}
-						/>
+						>
+							<app.icon.content size={23} />
+						</button>
 					))}
-					<button className="size-[26px] bg-[url('/desktop/applications/logout.png')] bg-contain bg-center bg-no-repeat smooth hover:-mt-2" title="LogOut" onClick={onLogOut} />
+
+					{/* Native */}
+					<button className="size-[35px] flex justify-center items-center rounded-lg smooth hover:-mt-2" style={{ backgroundColor: '#CDB534' }} title="Reboot" onClick={onReboot}>
+						<LuRotateCcw size={23} />
+					</button>
+
+					<button className="size-[35px] flex justify-center items-center rounded-lg smooth hover:-mt-2" style={{ backgroundColor: '#FF3A3A' }} title="PowerOff" onClick={onPowerOff}>
+						<LuPower size={23} />
+					</button>
 				</div>
 				<div className="bg-black/[0.50] flex items-center px-5 gap-x-3 backdrop-blur-[26px] h-[50px] [box-shadow:0px_4px_51px_rgba(0,_0,_0,_0.25)] rounded-[10px]">
 					<div className="font-medium text-base">{formattedTime}</div>

@@ -5,9 +5,8 @@ import { useSelector } from 'react-redux';
 import { LuFolder } from 'react-icons/lu';
 import { useState } from 'react';
 
-const FileExplorer = () => {
-	// Retrieve the "file-explorer" application state from Redux
-	const app = useSelector((state: RootState) => state.desktop.applications.find((app) => app.id === 'file-explorer')!);
+const Files = () => {
+	const app = useSelector((state: RootState) => state.desktop.applications.find((app) => app.id === 'files')!);
 
 	// State for storing folder data
 	const [data, setData] = useState<FixableAny>(null);
@@ -17,7 +16,7 @@ const FileExplorer = () => {
 
 	// Function to request folder data from the server based on the current path
 	const requestData = async () => {
-		const res = await makeEndpointRequest('/api/desktop/file-explorer', 'POST', {
+		const res = await makeEndpointRequest('/api/desktop/files', 'POST', {
 			path
 		});
 
@@ -27,9 +26,9 @@ const FileExplorer = () => {
 		}
 	};
 
-	// Function to initialize the File Explorer by fetching the root path
+	// Function to initialize
 	const onInit = async () => {
-		const res = await makeEndpointRequest('/api/desktop/file-explorer', 'GET', {});
+		const res = await makeEndpointRequest('/api/desktop/files', 'GET', {});
 
 		// Set the root path when initialized successfully
 		if (res.status === 200) {
@@ -87,4 +86,4 @@ const FileExplorer = () => {
 	);
 };
 
-export default FileExplorer;
+export default Files;

@@ -1,7 +1,6 @@
 import axios from 'axios';
 
-// Type definition for the allowed API routes
-type Route = '/api/setup' | '/api/auth' | '/api/logout' | '/api/desktop/file-explorer';
+type Route = string;
 
 // Type definition for the payload, which is an object with keys of type string and values of any type
 type Payload = Record<string, ExpectedAny>;

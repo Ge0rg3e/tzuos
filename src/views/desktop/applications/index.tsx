@@ -1,23 +1,29 @@
 import type { Application } from '~/redux/desktopSlice';
 import { AnimatePresence } from 'framer-motion';
-import FileExplorer from './file-explorer';
+import { LuFolder } from 'react-icons/lu';
 import { useSelector } from 'react-redux';
 import { RootState } from '~/redux/store';
 import Window from './window';
 
+// Apps
+import Files from './files';
+
 // Define a list of registered applications
 export const registredApplications: Array<Application> = [
 	{
-		id: 'file-explorer',
-		icon: '/desktop/applications/file-explorer.png',
-		name: 'File Explorer',
+		id: 'files',
+		icon: {
+			color: '#58AAFF',
+			content: LuFolder
+		},
+		name: 'Files',
 		opened: false,
 		tempData: {
 			isFullScreen: false,
 			height: 0,
 			width: 0
 		},
-		component: FileExplorer
+		component: Files
 	}
 ];
 
